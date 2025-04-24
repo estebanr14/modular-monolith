@@ -1,173 +1,90 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🧱 Modular Monolith with NestJS
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+👨‍💻 Author
+Made with ❤️ by Esteban Restrepo
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This is a **NestJS-based modular monolith** architecture project. It demonstrates how to structure a large-scale backend using **Domain-Driven Design (DDD)** and **CQRS** within individual modules that communicate **asynchronously via RabbitMQ**.
 
-## Description
+Each module is self-contained, following DDD principles, and leverages the **NestJS event bus** for internal communication.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+## 🚀 Features
 
-```bash
-$ yarn install
-```
+- ✅ **NestJS** framework with scalable modular architecture
+- 📦 **Modular Monolith** design – each module is isolated and encapsulated
+- 🧠 **CQRS** pattern inside each module (separating commands and queries)
+- 🧩 **Domain-Driven Design** – modules are organized by business context
+- 📬 **RabbitMQ** for inter-module asynchronous messaging
+- 🛰️ **NestJS EventBus** for event-driven patterns within modules
 
-## Compile and run the project
+---
 
-```bash
-# development
-$ yarn run start
+## 🏗️ Project Structure
+Each module contains:
 
-# watch mode
-$ yarn run start:dev
+- `domain/`: Entities, value objects, domain services
+- `application/`: Commands, queries, use-cases
+- `infrastructure/`: Event listeners, repositories, message subscribers
 
-# production mode
-$ yarn run start:prod
-```
+## ⚙️ Getting Started
 
-## Run tests
+### 🧩 Prerequisites
+
+- Node.js v18+
+- NPM
+- RabbitMQ running locally
+- (Optional) Docker for containers
+
+### 📥 Installation
 
 ```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
+npm install
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### ⚙️ Environment Setup
+Create a .env file from the example:
 
 ```bash
-$ yarn install -g mau
-$ mau deploy
+cp .env.example .env
 ```
 
+Update the environment variables, especially the RabbitMQ config.
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-
-## Automatic Code Generation
-This project uses Plop to automate code generation, adhering to a Domain-Driven Design (DDD) modular structure. It ensures centralized configuration and scalability for modules.
-
-## Generated Structure
-Each generated module follows a clear and consistent structure:
-
+### 🐇 Run RabbitMQ (with Docker)
 ```bash
-apps/
-  └── <app-name>/src/<module-name>/
-      ├── application/
-      │   ├── commands/       # CQRS Commands
-      │   ├── handlers/       # Command and Query Handlers
-      │   ├── mappers/        # Mappers between Entities and DTOs
-      │   ├── providers/      # Dependency Injection Providers
-      │   ├── <module-name>.service.ts
-      ├── domain/
-      │   ├── entities/       # Domain Entities and Value Objects
-      │   ├── <module-name>.interface.ts
-      │   ├── <module-name>.entity.ts
-      ├── infraestructure/
-      │   ├── schemas/        # MongoDB Schemas
-      │   ├── repositories/   # Database Repositories
-      ├── presentation/
-      │   ├── http/           # HTTP Controllers
-      │   ├── dtos/           # Input and Output DTOs
-```
-## Initial Configuration: config.json
-The config.json file defines the module details you want to generate. This file must be located at code-generation/config.json.
-
-Example config.json:
-
-```json
-{
-  "moduleName": "moduleName",
-  "fields": [
-    { "name": "userId", "type": "string", "required": true },
-    { "name": "balance", "type": "number", "required": true },
-    { "name": "currency", "type": "string", "required": true },
-    { "name": "isActive", "type": "boolean", "required": false }
-  ],
-  "operations": ["create", "update", "delete", "getById", "getList"]
-}
+docker run -d --hostname rabbit --name rabbitmq \
+  -p 5672:5672 -p 15672:15672 \
+  rabbitmq:3-management
 ```
 
+Access the dashboard at: http://localhost:15672
+(default credentials: guest / guest)
 
-## Field Descriptions:
-
-- moduleName: Name of the module.
-- fields: Defines the attributes of the module's main entity:
-  - name: Attribute name.
-  - type: Data type (string, number, boolean, date, etc.).
-  - required: Indicates if the field is mandatory (true or false).
-- operations: Required operations for module(create, update, delete, getById, getList)
-
-
-## Commands for Code Generation
-To generate code automatically:
-
-Ensure that the config.json file is correctly configured.
-Run the following command:
+### ▶️ Run the App
 ```bash
-yarn add:module
+npm run start:dev
 ```
-This command:
 
-Calls npx plop module --plopfile ./code-generation/plopFile.js.
-Generates module files in the appropriate location.
-Automatically formats the code (yarn format).
+### 🛠️ Tech Stack
+NestJS – backend framework
+
+RabbitMQ – messaging queue for inter-module communication
+
+CQRS – command-query separation per module
+
+DDD – rich domain modeling
+
+EventEmitterModule – NestJS native event bus
+
+### 📌 Future Enhancements
+Add Swagger documentation
+
+Include authentication module
+
+Add e2e tests with Jest
+
+Improve observability (logging + monitoring)
 
 
 
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
