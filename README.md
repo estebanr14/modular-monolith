@@ -17,6 +17,7 @@ Each module is self-contained, following DDD principles, and leverages the **Nes
 - 🧩 **Domain-Driven Design** – modules are organized by business context
 - 📬 **RabbitMQ** for inter-module asynchronous messaging
 - 🛰️ **NestJS EventBus** for event-driven patterns within modules
+- ⚙️ **Code generator using Plop** to scaffold domain objects quickly
 
 ---
 
