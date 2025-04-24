@@ -1,0 +1,37 @@
+{
+    "moduleName": "product",
+    "fields": [
+        {
+            "name": "id",
+            "type": "string",
+            "required": false
+        },
+        {
+            "name": "name",
+            "type": "string",
+            "required": true
+        },
+        {
+            "name": "price",
+            "type": "string",
+            "required": true
+        },
+        {
+            "name": "stock",
+            "type": "number",
+            "required": true
+        },
+        {
+            "name": "isActive",
+            "type": "boolean",
+            "required": false
+        }
+    ],
+    "operations": [
+        "create",
+        "update",
+        "delete",
+        "getById",
+        "getList"
+    ]
+}
